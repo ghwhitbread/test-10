@@ -1,0 +1,859 @@
+== Goals
+
+1.  _________________________________________________________________________________________________
+Reconvene of the https://www.tdwg.org/community/tnc/[Taxonomic Names and Concepts Interest Group]
+_________________________________________________________________________________________________
+2.  ____________________________________________________________________________________________
+Agreement on a plan for a replacement of the *Taxonomic Concept Transfer Schema (TCS)* that:
+____________________________________________________________________________________________
+
+* ______________________________________________________________________________________________________________________________________________________________________________________________
+is compliant with the TDWG https://github.com/tdwg/vocab/tree/master/sds[Standards Documentation Standard] and https://github.com/tdwg/vocab/tree/master/vms[Vocabulary Maintenance Standard].
+______________________________________________________________________________________________________________________________________________________________________________________________
+* _____________________________________________________________________________________________________________________________
+provides for the needs of the various types of users and use cases of *Taxonomic Names* in the biodiversity informatics space
+_____________________________________________________________________________________________________________________________
+* ______________________________________________________________________________________________________________
+as much as possible synthesises and takes benefit of the work that has been done in the TDWG community so far.
+______________________________________________________________________________________________________________
+
+== Introduction
+
+Purpose. +
+workshop abstract ...
+
+Open Data needs open standards, open standards open development, and open development open minds, and TDWG. +
+ +
+Standards are owned by the community.
+
+=== History
+
+=== Issues
+
+* _______________________________________________________________________________
+*Taxonomic Concept* is too esoteric: people can’t really put their finger on it
+_______________________________________________________________________________
+
+=== Previous work
+
+* _____
+Bisby
+_____
+* ____
+APNI
+____
+* ____________
+Berlin Model
+____________
+* ____
+IPNI
+____
+* _________
+ITIS, CoL
+_________
+* __________________
+Flora of Australia
+__________________
+* _________________
+LinneanCore (SDD)
+_________________
+* _________
+DwC, ABCD
+_________
+* __________________
+TCS, TDWG ontology
+__________________
+* ______________
+ALA-NSL (2008)
+______________
+* ____________
+txn:deVriese
+____________
+* ______________
+GBIF Checklist
+______________
+* _______
+DwC RDF
+_______
+* _____
+Nomen
+_____
+* ___
+WFO
+___
+* __________
+OpenBiodiv
+__________
+* ___
+BCO
+___
+* _______
+ColPlus
+_______
+* ______
+TaxRef
+______
+* ___
++++
+___
+
+=== Shortcomings of TCS and Darwin Core.
+
+Application schema > TCS
+
+Classification in Darwin core
+
+Classes + properties + annotations -> RDF
+
+Simple vocabulary
+
+Monographic rather than incremental
+
+Inappropriate use of the taxonomic concept concept
+
+“Taxon Concept”
+
+Syntax ?
+
+Do we need something else?
+
+Positions from floor
+
+*Standalone replacement?*
+
+Basic vocabulary to support
+
+Darwin Core extension -> NFB <- TCS
+
+GBIF checklist guide
+
+Start with!
+
+Darwin Core
+
+* ____________________________________________
+leave “convenience” terms and internal links
+____________________________________________
+* ________________________________
+remove external links (id terms)
+________________________________
+* _____________
+Add new terms
+_____________
+** ___________
+One level ?
+___________
+* _______________________
+Controlled vocabularies
+_______________________
+* _________________
+Recommend classes
+_________________
+
+API specification for
+
+* ____
+Name
+____
+* ________
+Instance
+________
+* _____
+Taxon
+_____
+* ___________
+Arrangement
+___________
+
+== What are we looking for in a Name standard/vocabulary?
+
+(Core competencies / Functional Requirements / Use cases)
+
+* ______________________
+Generic metadata model
+______________________
+** __________
+Vocabulary
+__________
+* _________________
+Full code support
+_________________
+** ________________
+Code maintenance
+________________
+* ________________
+Interoperability
+________________
+* __________
+Every name
+__________
+* ___________________________
+Every instance (name usage)
+___________________________
+* __________________
+Every relationship
+__________________
+* ___________________
+Every point of view
+___________________
+* _____________
+Every version
+_____________
+* ____________
+Every syntax
+____________
+* _________________________
+Every application profile
+_________________________
+* _________________________
+Common interchange format
+_________________________
+* _______________________
+Support for publication
+_______________________
+* __________
+Extensible
+__________
+* _____________________________________________________
+Obey the the tdwg laws for standards and vocabularies
+_____________________________________________________
+* ____________________________
+Independent of serialization
+____________________________
+* __________________
+concise vocabulary
+__________________
+* ___________
+RDF support
+___________
+* ____________________
+Application Profiles
+____________________
+* _____________________
+simple enough for ...
+_____________________
+
+== Terminology / Core Concepts
+
+A *name* is a “name”, a designation, a label, a string used as a name: in any context.
+
+A *taxonomic name* is a name used in a taxonomic context., often a scientific name formulated (or attempted) according to some rules of nomenclature.
+
+A *taxonomic name instance* is a usage of a taxonomic name establishing taxonomic context: a concept, a synonym, an assertion, a relationship; tax. nov., comb.nov. … misapplication.
+
+[cols="",]
+|================================================================================================================================================================================================================================================================================================================================================================================================================
+a|
+==== Relationship instances
+
+* __________________________________________________________________________________
+*Synonyms* (*homotypic* or *heterotypic*): target instance is a *primary instance*
+__________________________________________________________________________________
+* ___________________________________________________________
+*Misapplication*: target instance is a *secondary instance*
+___________________________________________________________
+* _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+Relationship where the target instance is a *primary instance*, but the instance is *not* a *synonym* instance (happens when part of the type material (syntypes or paratypes) belongs to a different taxon than the type (lecto- or holotype); rather than calling this ‘pro parte synonym’, which is semantically incorrect, it is better to coin a new term – *parasynonym*? – or call it a *misapplication*
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+|================================================================================================================================================================================================================================================================================================================================================================================================================
+
+A *taxonomic concept* is a taxonomic name instance establishing or circumscribing a taxonomic entity - often linking synonymic inclusions and adding annotations, description…
+
+A *taxonomic tree* is a hierarchical arrangement of taxonomic concepts
+
+A *taxon* is a reusable branch or leaf of a taxonomic tree.
+
+[cols="",]
+|==========================================================================================================================================================
+a|
+==== Corollaries
+
+* _________________________________________________________________________________________________________________________________________________________
+*Change of parent*, e.g. species transferred to a different genus, genus transferred to a different family (leads to homotypic or nomenclatural synonyms)
+_________________________________________________________________________________________________________________________________________________________
+
+_______________________
+→ *same taxon, same ID*
+_______________________
+
+* ________________________________________________________________________________________________________________
+*Change of rank*, e.g. species is demoted to subspecies or variety, subspecies or variety is promoted to species
+________________________________________________________________________________________________________________
+
+→ *different name, so different taxon, new ID*
+
+* ___________________________
+*Change of circumscription*
+___________________________
+** ____________________________________________________
+*Splitting*, e.g. splitting a genus into two or more
+____________________________________________________
+** ___________________________________________________________________________________________________
+*Merging*, e.g. lumping two or more species into one (leading to heterotypic or taxonomic synonyms)
+___________________________________________________________________________________________________
+
+________________________________________________________________________
+→ *different taxa, new IDs* (also for the taxon that keeps the old name)
+________________________________________________________________________
+
+|==========================================================================================================================================================
+
+A *taxonomic arrangement* or *named tree* is a collection of taxa. A classification, checklist, Flora or Fauna.
+
+*Note:* In a Names standard *‘scientific name’* is a type of *taxonomic name* rather than a property of a *Taxon*.
+
+== A Domain Model?
+
+Or list?
+
+Normative or guide.
+
+Taxon vs Name Usage
+
+=== NSL Example[todo]
+
+Bibliographic: Where name is found and how it is used in that place. Every instance.
+
+Just about names and taxa: Authors, References elsewhere -> external resources
+
+* ____
+Name
+____
+** ____________
+Name Strings
+____________
+** ______
+Code !
+______
+** ____________________________________________________________
+Type of name (scientific, vernacular, informal, cultivar…) !
+____________________________________________________________
+** ______
+Rank !
+______
+** ________
+Status !
+________
+** __________
+Authorship
+__________
+** _____________________________________
+Primary reference ( incl. basionym) !
+_____________________________________
+* _________
+Reference
+_________
+** ___________________
+Type of reference !
+___________________
+** ___________________
+Part of Reference !
+___________________
+** ____________________________________
+dc:title, dc:creator, dc:created:...
+____________________________________
+** _______
+CitedAs
+_______
+** ___________________
+External resource !
+___________________
+* ________
+Instance
+________
+** __________________
+Type of instance !
+__________________
+** ______
+Name !
+______
+** ___________
+Reference !
+___________
+*** _____________
+Page citation
+_____________
+** _________________
+Citing instance !
+_________________
+** ________________
+Cited instance !
+________________
+* _____
+Taxon
+_____
+** __________
+Instance !
+__________
+** ______________
+Parent taxon !
+______________
+** _______________
+Included taxa !
+_______________
+*** _____
+Taxon
+_____
+**** _____
+Taxon
+_____
+***** ___
+...
+___
+** ___________
+annotations
+___________
+** _______
+Profile
+_______
+* _____________________
+Taxonomic arrangement
+_____________________
+** ____
+Root
+____
+*** _______
+Taxon !
+_______
+* ____________
+Vocabularies
+____________
+** ____________________
+Code of Nomenclature
+____________________
+** ________________
+Status of a Name
+________________
+*** ______
+Code !
+______
+*** ______
+Status
+______
+*** ___________
+Description
+___________
+** ____________
+Type of Name
+____________
+** ________________________
+Type of Instance (usage)
+________________________
+** ________________________
+The system of Name Ranks
+________________________
+** _________________
+Type of Reference
+_________________
+** _________________________
+Type of external Resource
+_________________________
+
+== Changes to Darwin Core?
+
+* ________________________
+Extension of Darwin Core
+________________________
+* _________________________________
+Cull Darwin core (TaxonConceptID)
+_________________________________
+
+* _________________________________________
+http://rs.tdwg.org/dwc/terms/Taxon[Taxon]
+_________________________________________
+** _____________________________________________
+http://rs.tdwg.org/dwc/terms/taxonID[taxonID]
+_____________________________________________
+** _______________________________________________________________
+http://rs.tdwg.org/dwc/terms/scientificNameID[scientificNameID]
+_______________________________________________________________
+** _____________________________________________________________________
+http://rs.tdwg.org/dwc/terms/acceptedNameUsageID[acceptedNameUsageID]
+_____________________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/parentNameUsageID[parentNameUsageID]
+_________________________________________________________________
+** _____________________________________________________________________
+http://rs.tdwg.org/dwc/terms/originalNameUsageID[originalNameUsageID]
+_____________________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/nameAccordingToID[nameAccordingToID]
+_________________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/namePublishedInID[namePublishedInID]
+_________________________________________________________________
+** ___________________________________________________________
+http://rs.tdwg.org/dwc/terms/taxonConceptID[taxonConceptID]
+___________________________________________________________
+** ___________________________________________________________
+http://rs.tdwg.org/dwc/terms/scientificName[scientificName]
+___________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/acceptedNameUsage[acceptedNameUsage]
+_________________________________________________________________
+** _____________________________________________________________
+http://rs.tdwg.org/dwc/terms/parentNameUsage[parentNameUsage]
+_____________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/originalNameUsage[originalNameUsage]
+_________________________________________________________________
+** _____________________________________________________________
+http://rs.tdwg.org/dwc/terms/nameAccordingTo[nameAccordingTo]
+_____________________________________________________________
+** _____________________________________________________________
+http://rs.tdwg.org/dwc/terms/namePublishedIn[namePublishedIn]
+_____________________________________________________________
+** _____________________________________________________________________
+http://rs.tdwg.org/dwc/terms/namePublishedInYear[namePublishedInYear]
+_____________________________________________________________________
+** _______________________________________________________________________
+http://rs.tdwg.org/dwc/terms/higherClassification[higherClassification]
+_______________________________________________________________________
+** _____________________________________________
+http://rs.tdwg.org/dwc/terms/kingdom[kingdom]
+_____________________________________________
+** ___________________________________________
+http://rs.tdwg.org/dwc/terms/phylum[phylum]
+___________________________________________
+** _________________________________________
+http://rs.tdwg.org/dwc/terms/class[class]
+_________________________________________
+** _________________________________________
+http://rs.tdwg.org/dwc/terms/order[order]
+_________________________________________
+** ___________________________________________
+http://rs.tdwg.org/dwc/terms/family[family]
+___________________________________________
+** _________________________________________
+http://rs.tdwg.org/dwc/terms/genus[genus]
+_________________________________________
+** _______________________________________________
+http://rs.tdwg.org/dwc/terms/subgenus[subgenus]
+_______________________________________________
+** _____________________________________________________________
+http://rs.tdwg.org/dwc/terms/specificEpithet[specificEpithet]
+_____________________________________________________________
+** _________________________________________________
+http://infraspecificepithet[infraspecificEpithet]
+_________________________________________________
+** _________________________________________________
+http://rs.tdwg.org/dwc/terms/taxonRank[taxonRank]
+_________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/verbatimTaxonRank[verbatimTaxonRank]
+_________________________________________________________________
+** _______________________________________________________________________________
+http://rs.tdwg.org/dwc/terms/scientificNameAuthorship[scientificNameAuthorship]
+_______________________________________________________________________________
+** ___________________________________________________________
+http://rs.tdwg.org/dwc/terms/vernacularName[vernacularName]
+___________________________________________________________
+** _________________________________________________________________
+http://rs.tdwg.org/dwc/terms/nomenclaturalCode[nomenclaturalCode]
+_________________________________________________________________
+** _____________________________________________________________
+http://rs.tdwg.org/dwc/terms/taxonomicStatus[taxonomicStatus]
+_____________________________________________________________
+** _____________________________________________________________________
+http://rs.tdwg.org/dwc/terms/nomenclaturalStatus[nomenclaturalStatus]
+_____________________________________________________________________
+** _______________________________________________________
+http://rs.tdwg.org/dwc/terms/taxonRemarks[taxonRemarks]
+_______________________________________________________
+
+==  +
+ +
+Taxonomic Concept Transfer Schema (TCS)
+
+* _________
+TaxonName
+_________
+** ___
+@id
+___
+** _____________
+@isAnamorphic
+_____________
+** __________________
+@nomenclaturalCode
+__________________
+** ____________________________
+Simple (full name as string)
+____________________________
+** ____________________
+Rank [TaxonomicRank]
+____________________
+*** _____
+@code
+_____
+** _____________________________
+CanonicalName [CanonicalName]
+_____________________________
+*** ______
+Simple
+______
+*** ________
+[choice]
+________
+**** _________
+Uninomial
+_________
+**** __________
+[sequence]
+__________
+***** _____
+Genus
+_____
+***** ________
+[choice]
+________
+****** ___________________
+InfragenericEpithet
+___________________
+****** __________
+[sequence]
+__________
+******* _______________
+SpecificEpithet
+_______________
+******* ____________________
+InfraspecificEpithet
+____________________
+*** _________________
+CultivarNameGroup
+_________________
+** ___________________
+CanonicalAuthorship
+___________________
+*** ______
+Simple
+______
+*** ________
+[choice]
+________
+**** _________________________
+Authorship [NameCitation]
+_________________________
+***** ______
+Simple
+______
+***** ____
+Year
+____
+***** _______
+Authors
+_______
+****** _________
+AgentName
+_________
+******* _____
+@role
+_____
+**** _________________________________
+BasionymAuthorship [NameCitation]
+_________________________________
+**** ____________________________________
+CombinationAuthorship [NameCitation]
+____________________________________
+** ___________________________
+PublishedIn [ReferenceType]
+___________________________
+*** ____
+@ref
+____
+** ____
+Year
+____
+** ______________
+MicroReference
+______________
+** ____________
+Typification
+____________
+*** ______
+Simple
+______
+*** ________
+[choice]
+________
+**** ____________
+TypeVouchers
+____________
+***** ___________
+TypeVoucher
+___________
+****** ___________
+@typeOfType
+___________
+****** _______________________________
+VoucherRefeence [ReferenceType]
+_______________________________
+****** ____________________________________
+LectoTypePublication [ReferenceType]
+____________________________________
+****** _______________________
+LectoTypeMicroReference
+_______________________
+**** ________
+TypeName
+________
+***** _____________________________
+NameReference [ReferenceType]
+_____________________________
+***** ____________________________________
+LectoTypePublication [ReferenceType]
+____________________________________
+***** _______________________
+LectoTypeMicroReference
+_______________________
+** ____________________________________________
+SpellingCorrectionOf [NomenclaturalNoteType]
+____________________________________________
+*** ______________
+RuleConsidered
+______________
+*** ____
+Note
+____
+*** ___________
+RelatedName
+___________
+*** ___________
+PublishedIn
+___________
+*** ______________
+MicroReference
+______________
+** ________________________________
+Basionym [NomenclaturalNoteType]
+________________________________
+** _______________________________
+BasedOn [NomenclaturalNoteType]
+_______________________________
+** ________________________________________
+ConservedAgainst [NomenclaturalNoteType]
+________________________________________
+** ____________________________________________________
+LaterHomonymOf [NomenclaturalNoteType]toTaxonConcept
+____________________________________________________
+** __________________________________
+Sanctioned [NomenclaturalNoteType]
+__________________________________
+** __________________________________________
+ReplacementNameFor [NomenclaturalNoteType]
+__________________________________________
+** _________________________________________
+PublicationStatus [NomenclaturalNoteType]
+_________________________________________
+** ____________
+ProviderLink
+____________
+** ______________________________________
+ProviderSpecificData [PlaceholderType]
+______________________________________
+
+* ____________
+TaxonConcept
+____________
+** ___
+@id
+___
+** _____
+@type
+_____
+** ________
+@primary
+________
+** _____
+@form
+_____
+** ____________________
+Name [ReferenceType]
+____________________
+** ____________________
+Rank [TaxonomicRank]
+____________________
+** _____________________________
+AccordingTo [AccordingToType]
+_____________________________
+** __________________
+TaxonRelationships
+__________________
+*** _________________
+TaxonRelationship
+_________________
+**** _____
+@type
+_____
+**** ______________
+ToTaxonConcept
+______________
+***** ____
+@ref
+____
+***** _____
+@type
+_____
+** _______________________
+SpecimenCircumscription
+_______________________
+*** ________________________________
+CircumscribedBy \{ReferenceType]
+________________________________
+** __________________________________________
+CharacterCircumscription [PlaceholderType[
+__________________________________________
+** ____________
+ProviderLink
+____________
+** ______________________________________
+ProviderSpecificdata [PlaceholderType]
+______________________________________
+
+* __________________________
+TaxonRelationshipAssertion
+__________________________
+** ________________________
+@type [RelationshipType]
+________________________
+** ___
+@id
+___
+** _____________________________
+AccordingTo [AccordingToType]
+_____________________________
+*** ______
+Simple
+______
+*** ___________________
+AccordingToDetailed
+___________________
+**** _________________________
+AuthorTeam [NameCitation]
+_________________________
+**** _________________________
+According [ReferenceType]
+_________________________
+**** ______________
+MicroReference
+______________
+** ________________
+FromTaxonConcept
+________________
+*** ____________
+TaxonConcept
+____________
+** ______________
+ToTaxonConcept
+______________
+*** ____________
+TaxonConcept
+____________
+
+* ________
+Specimen
+________
+* ___________
+Publication
+___________
