@@ -74,9 +74,8 @@
     			    How does tcs:TaxonConcept relate to NameUsage and nsl:Instance?
 
 Darwin Core ambiguous
-
 - Overloaded definitions
-     - Many interpretations.
+  - Many interpretations.
 - Overloaded usage.
 - Classification terms.
 - Ranks.
