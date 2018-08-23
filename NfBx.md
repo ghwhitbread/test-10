@@ -198,8 +198,8 @@ Restart with ideas in **Linnean Core** (J.Cooper)
         - Authors, References detail elsewhere -  external resources
 
 >	       Model
-	       
-               * Name
+
+>              * Name
 	         * Name Strings
 	         * Code
 	         * Type of name (scientific, vernacular, informal, cultivar…)
