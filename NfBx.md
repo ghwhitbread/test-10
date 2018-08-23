@@ -74,20 +74,21 @@
     			    How does tcs:TaxonConcept relate to NameUsage and nsl:Instance?
 
 Darwin Core ambiguous
-- Overloaded definitions
-  - Many interpretations.
-- Overloaded usage.
-- Classification terms.
-- Ranks.
-- Path to RDF …
+
+  - Overloaded definitions
+    - Many interpretations.
+  - Overloaded usage.
+  - Classification terms.
+  - Ranks.
+  - Path to RDF …
 
 Many different application profiles 
- - Simple vocabulary required.
+  - Simple vocabulary required.
 
 A Domain Model?
-- Agreement on definitions
-- Classes
-- Code compliance
+  - Agreement on definitions
+  - Classes
+  - Code compliance
 
 ???
 
