@@ -73,24 +73,24 @@
 
     			    How does tcs:TaxonConcept relate to NameUsage and nsl:Instance?
 
- Darwin Core ambiguous
+Darwin Core ambiguous
 
- -	Overloaded definitions
+- Overloaded definitions
      - Many interpretations.
-  - Overloaded usage.
-     - Classification terms.
-  - Ranks.
-  - Path to RDF …
+- Overloaded usage.
+- Classification terms.
+- Ranks.
+- Path to RDF …
 
- Many different application profiles 
+Many different application profiles 
  - Simple vocabulary required.
-  -	A Domain Model?
 
- Agreement on definitions
- - Classes
- - Code compliance
+A Domain Model?
+- Agreement on definitions
+- Classes
+- Code compliance
 
- ???
+???
 
 ## Previous Work !
 
@@ -199,7 +199,7 @@ Restart with ideas in **Linnean Core** (J.Cooper)
 
 	       Model
 
-           * Name
+               * Name
 	         * Name Strings
 	         * Code
 	         * Type of name (scientific, vernacular, informal, cultivar…)
@@ -211,7 +211,7 @@ Restart with ideas in **Linnean Core** (J.Cooper)
 	         * Type of reference !
 	         * Part of Reference !
 	         * dc:title, dc:creator, dc:created:...
-			     * CitedAs
+		 * CitedAs
 	         * External resource !
 	       * Instance
 	         * Type of instance !
@@ -222,11 +222,11 @@ Restart with ideas in **Linnean Core** (J.Cooper)
 	         * Cited instance !
 	         * Taxon
 	         * Instance !
-			     * Parent taxon !
-			     * Included taxa !
-		       * Taxon !
-		         * Taxon !
-		           * ...
+		 * Parent taxon !
+		 * Included taxa !
+		   * Taxon !
+		     * Taxon !
+		       * ...
 	         * Annotations
 	         * Profile
 	         * Taxonomic arrangement
@@ -244,7 +244,7 @@ Restart with ideas in **Linnean Core** (J.Cooper)
 	          * Type of Reference
 	          * Type of external Resource
 	          * Type of taxon
-			      * Type of arrangement
+		  * Type of arrangement
 
 ## Changes to Darwin Core?
 		
