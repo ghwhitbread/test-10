@@ -197,9 +197,9 @@ Restart with ideas in **Linnean Core** (J.Cooper)
     -Just about names and taxa:
         - Authors, References detail elsewhere -  external resources
 
->	       Model
-
->              * Name
+	       Model
+	       
+               * Name
 	         * Name Strings
 	         * Code
 	         * Type of name (scientific, vernacular, informal, cultivar…)
