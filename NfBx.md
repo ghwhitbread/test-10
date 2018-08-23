@@ -197,8 +197,8 @@ Restart with ideas in **Linnean Core** (J.Cooper)
     -Just about names and taxa:
         - Authors, References detail elsewhere -  external resources
 
-	       Model
-
+>	       Model
+	       
                * Name
 	         * Name Strings
 	         * Code
