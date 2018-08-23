@@ -199,7 +199,7 @@ Restart with ideas in **Linnean Core** (J.Cooper)
 
    Model
 	       
-               * Name
+              * Name
 	         * Name Strings
 	         * Code
 	         * Type of name (scientific, vernacular, informal, cultivar…)
